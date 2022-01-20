@@ -1,136 +1,151 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans&display=swap");
 
-*{
-    list-style: none;
-    text-decoration: none;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Open Sans', sans-serif;
-    border-radius: 20px;
-    margin: 2%;
-
+* {
+  list-style: none;
+  text-decoration: none;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+  margin: 2%;
 }
 
-body{
-    background: #ffffff;
+body {
+  background: #ffffff;
 }
 
-.sidebar{
-    background: #007355;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 225px;
-    height: 92%;
-    padding: 20px 0;
-    transition: all 0.5s ease;
+.sidebar {
+  background: #007355;
+  border-radius: 2rem;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 15rem;
+  height: 92%;
+  padding: 1.5rem 0rem;
+  transition: all 0.5s ease;
 }
 .wrapper {
-    background: #F3F3FF;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 96%;
-    height: 92%;
-    padding: 20px 0;
-    transition: all 0.5s ease;
+  background: #f3f3ff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 96%;
+  height: 92%;
+  padding: 20px 0;
+  transition: all 0.5s ease;
 }
 
-.wrapper .sidebar .profile{
-    text-align: center;
+.wrapper .sidebar .profile {
+  text-align: center;
 }
-.wrapper .sidebar .profile h3{
-    color: #ffffff;
+.wrapper .sidebar .profile h3 {
+  color: #ffffff;
 }
-.wrapper .sidebar .profile hr{
-    border: 0.1px solid #2C957B;
-}
-
-.icon, .item{
-    vertical-align: middle;
-    
-    display: inline-block;
-    color: white;
-}
-nav ul{
-    height: 100%;
-    width: 100%;
-    list-style: none;
-}
-nav ul li{
-    line-height: 20px;
-    margin-bottom: 10px;
-
-}
-nav ul li a{
-color: white;
-text-decoration: none;
-font-size: 20px;
-font-weight: 500;
-display: block;
-width: 100%;
-}
-nav ul li a:hover{
-    color: rgb(255, 255, 80);
-
+.wrapper .sidebar .profile hr {
+  border: 0.1px solid #2c957b;
 }
 
-nav ul li{
-    padding-left: 25px;
-}
-nav ul ul li a{
-     font-size: 17px;
-    padding-left: 10px;
-}
-nav ul ul{
-    position: static;
-display: none;
-}
+.icon,
+.item {
+  vertical-align: middle;
 
-.sidebar ul li a:hover path{
-    color: rgb(255, 255, 80);
-    stroke: rgb(255, 255, 80);
+  display: inline-block;
+  color: white;
 }
-span:hover{
-    color: rgb(255, 255, 80);
+nav ul {
+  height: 100%;
+  width: 100%;
+  list-style: none;
 }
-svg,span{
-    vertical-align: middle;
-    display: inline-block;
+nav ul li {
+  line-height: 20px;
+  margin-bottom: 10px;
 }
-
-
-
-.ride{
-    font-size: 22px;
-    transition: transform 0.4s;
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+}
+nav ul li a:hover {
+  color: rgb(255, 255, 80);
 }
 
-.ticket{
-    font-size: 22px;
-    transition: transform 0.4s;
+nav ul li {
+  padding-left: 25px;
+}
+nav ul ul li a {
+  font-size: 17px;
+  padding-left: 10px;
+}
+nav ul ul {
+  position: static;
+  display: none;
 }
 
-.user{
-    font-size: 22px;
-    transition: transform 0.4s;
+.sidebar ul li a:hover path {
+  color: rgb(255, 255, 80);
+  stroke: rgb(255, 255, 80);
 }
-nav ul li .ride.rotate{
-
-    transform: rotate(-180deg);
-}
-
-nav ul li .ticket.rotate{
-
-    transform: rotate(-180deg);
-}
-
-nav ul li .user.rotate{
-
-    transform: rotate(-180deg);
+/* span:hover {
+  color: rgb(255, 255, 80);
+} */
+svg,
+span {
+  vertical-align: middle;
+  display: inline-block;
 }
 
-nav ul .ride-show.show, nav ul .ticket-show.show, 
-nav ul .user-show.show{
-    display: block;
+.ride {
+  font-size: 22px;
+  transition: transform 0.4s;
+}
+
+.ticket {
+  font-size: 22px;
+  transition: transform 0.4s;
+}
+
+.user {
+  font-size: 22px;
+  transition: transform 0.4s;
+}
+nav ul li .ride.rotate {
+  transform: rotate(-180deg);
+}
+
+nav ul li .ticket.rotate {
+  transform: rotate(-180deg);
+}
+
+nav ul li .user.rotate {
+  transform: rotate(-180deg);
+}
+
+nav ul .ride-show.show,
+nav ul .ticket-show.show,
+nav ul .user-show.show {
+  display: block;
+}
+
+.color-text {
+  color: black !important;
+  background-color: white;
+  margin-right: 1rem;
+  border-radius: 0.5rem !important;
+  padding: 0.25rem;
+  width: auto;
+  font-weight: bold;
+}
+.color-text path {
+  stroke: black;
+  color: black;
+}
+
+.color-text:hover path {
+  color: black;
+  stroke: black !important;
 }
