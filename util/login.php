@@ -2,10 +2,18 @@
 
 session_start(); 
 
-include "db_conn.php";
+include "../Database/db_conn.php";
+
+function debug_to_console($data) {
+    $output = $data;
+    if (is_array($output))
+        $output = implode(',', $output);
+
+    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
+}
 
 if (isset($_POST['uname']) && isset($_POST['password'])) {
-
+    
     function validate($data){
 
        $data = trim($data);
@@ -23,6 +31,8 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
     $pass = validate($_POST['password']);
 
         $sql = "SELECT * FROM users WHERE email='$uname' AND password='$pass'";
+        // $sql = "SELECT * FROM users WHERE email='$uname'";
+        debug_to_console($sql);
 
         $result = mysqli_query($conn, $sql);
 
@@ -40,13 +50,13 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
                 $_SESSION['id'] = $row['id'];
 
-                header("Location: dashboard.php");
+                header("Location: ../dashboard.php");
 
                 exit();
 
             }else{
 
-                header("Location: index.php?error=Incorrect User name or password");
+                header("Location: ../index.php?error=Incorrect User name or password other one");
 
                 exit();
 
@@ -54,7 +64,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
         }else{
 
-            header("Location: index.php?error=Incorrect User name or password");
+            header("Location: ../index.php?error=Incorrect User name or password");
 
             exit();
 
@@ -64,7 +74,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
 }else{
 
-    header("Location: index.php");
+    header("Location: ../index.php");
 
     exit();
 

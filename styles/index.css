@@ -1,0 +1,15 @@
+.c-height {
+  height: 95%;
+  width: 95%;
+}
+.inherit-h {
+  height: inherit;
+}
+.gradient {
+  background: rgb(240, 231, 198);
+  background: linear-gradient(
+    90deg,
+    rgba(240, 231, 198, 1) 0%,
+    rgba(235, 207, 108, 1) 100%
+  );
+}
