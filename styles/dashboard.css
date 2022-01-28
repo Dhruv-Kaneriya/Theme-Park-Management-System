@@ -1,0 +1,12 @@
+/* .recent-ticket-gradient {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(243, 238, 197, 1) 0%,
+    rgba(242, 197, 38, 1) 100%
+  );
+} */
+
+.recent-ticket-gradient {
+  background-color: antiquewhite;
+}

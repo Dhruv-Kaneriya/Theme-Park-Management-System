@@ -4,14 +4,6 @@ session_start();
 
 include "../Database/db_conn.php";
 
-function debug_to_console($data) {
-    $output = $data;
-    if (is_array($output))
-        $output = implode(',', $output);
-
-    echo "<script>console.log('Debug Objects: " . $output . "' );</script>";
-}
-
 if (isset($_POST['uname']) && isset($_POST['password'])) {
     
     function validate($data){
@@ -30,9 +22,10 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
     $upass = validate($_POST['password']);
 
-        $sql = "SELECT * FROM users WHERE email='$uname' AND password='$upass'";
-        // $sql = "SELECT * FROM users WHERE email='$uname'";
-        debug_to_console($sql);
+
+        $sql = "SELECT * FROM users WHERE email='$uname' AND password='$pass'";
+      
+
 
         $result = mysqli_query($conn, $sql);
 
