@@ -35,16 +35,16 @@
                         ?>
         
                         <tr class="bg-transparent dark:bg-gray-800 dark:border-gray-700">
-                            <td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                            <td class="py-1 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                 <?php echo $res['customer_name']; ?>
                             </td>
-                            <td class="py-4 px-6 text-sm  whitespace-nowrap dark:text-gray-400">
+                            <td class="py-1 px-6 text-sm  whitespace-nowrap dark:text-gray-400">
                                 <?php echo $res['no_tickets']; ?>
                             </td>
-                            <td class="py-4 px-6 text-sm  whitespace-nowrap dark:text-gray-400">
+                            <td class="py-1 px-6 text-sm  whitespace-nowrap dark:text-gray-400">
                                 <?php echo $res['ride_name']; ?>
                             </td>
-                            <td class="py-4 px-6 text-sm text-gray-600 whitespace-nowrap dark:text-gray-400">
+                            <td class="py-1 px-6 text-sm text-gray-600 whitespace-nowrap dark:text-gray-400">
                                 <?php echo $res['date_issued']; ?>
                             </td>
                            
