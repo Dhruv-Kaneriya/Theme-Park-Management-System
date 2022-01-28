@@ -27,11 +27,15 @@
                             // path is from relative to dashboard 
                             include "Database/db_conn.php";
 
-                            $sql = "SELECT * FROM tickets_list";
+                            $sql = "SELECT * FROM tickets_list order by date_issued DESC";
                             
                             $result = mysqli_query($conn, $sql);
 
+                            $i=0;
                             while($res = mysqli_fetch_array($result)){
+                            if($i<5)
+                            {
+
                         ?>
         
                         <tr class="bg-transparent dark:bg-gray-800 dark:border-gray-700">
@@ -51,6 +55,8 @@
                         </tr>
 
                         <?php
+                            }
+                            $i++;
                             }
 
                         ?>
