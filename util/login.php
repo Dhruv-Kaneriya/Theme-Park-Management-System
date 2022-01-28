@@ -43,9 +43,9 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
                 $_SESSION['id'] = $row['id'];
                  
-                $_SESSION['type']=$row['type'];
+                $type=$row['type'];
 
-                if($_SESSION['type']==1)
+                if($type==1)
                 {
                     $_SESSION['role_name']="ADMIN";
                     $_SESSION['position']="Manager";
