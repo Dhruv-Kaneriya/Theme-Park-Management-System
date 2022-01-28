@@ -11,6 +11,7 @@ include_once("util/session.php");
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.min.css" />
     <link
       href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css"
       rel="stylesheet"
@@ -39,14 +40,14 @@ include_once("util/session.php");
         <?php include 'components/navbar.php' ?>
         <!-- navbar section end  -->
         <!-- two item section start -->
-        <div class="md:flex justify-around">
+        <div class="md:flex justify-around leading-8">
           <div class="rounded-lg bg-white m-6 p-8 pl-8 md:w-2/5">
             <p class="font-bold ">Total Rides</p>
             <p class="text-5xl font-bold">4</p>
             <p class="font-bold text-gray-500">Total Active Rides</p>
             <p class="text-5xl font-bold text-gray-500">3</p>
           </div>
-          <div class="rounded-lg bg-white m-6 p-4 pl-8 md:w-2/5">
+          <div class="rounded-lg bg-white m-6 p-8 pl-8 md:w-2/5">
             <p class="font-bold ">Today's Sale</p>
             <p class="text-5xl font-bold">23</p>
             <p class="font-bold text-gray-500">Total Sales</p>
@@ -71,6 +72,7 @@ include_once("util/session.php");
         <!-- recent ticket section end  -->
       </div>
     </div>
+    <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
   </body>
 
 </html>
