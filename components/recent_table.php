@@ -32,6 +32,35 @@
                             $result = mysqli_query($conn, $sql);
 
                             $i=0;
+                            function time_elapsed_string($datetime, $level = 7) {
+                                date_default_timezone_set('Asia/Kolkata');
+                                $now = new DateTime;
+                                $ago = new DateTime($datetime);
+                                $diff = $now->diff($ago);
+                            
+                                $diff->w = floor($diff->d / 7);
+                                $diff->d -= $diff->w * 7;
+                            
+                                $string = array(
+                                    'y' => 'year',
+                                    'm' => 'month',
+                                    'w' => 'week',
+                                    'd' => 'day',
+                                    'h' => 'hour',
+                                    'i' => 'minute',
+                                    's' => 'second',
+                                );
+                                foreach ($string as $k => &$v) {
+                                    if ($diff->$k) {
+                                        $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
+                                    } else {
+                                        unset($string[$k]);
+                                    }
+                                }
+                            
+                                $string = array_slice($string, 0, $level);
+                                return $string ? implode(', ', $string) . ' ago' : 'just now';
+                            }
                             while($res = mysqli_fetch_array($result)){
                             if($i<5)
                             {
@@ -49,7 +78,10 @@
                                 <?php echo $res['ride_name']; ?>
                             </td>
                             <td class="py-1 px-6 text-sm text-gray-600 whitespace-nowrap dark:text-gray-400">
-                                <?php echo $res['date_issued']; ?>
+                                <?php 
+                                
+                                
+                                echo time_elapsed_string($res['date_issued'],2); ?>
                             </td>
                            
                         </tr>
