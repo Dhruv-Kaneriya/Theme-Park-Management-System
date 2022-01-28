@@ -14,7 +14,7 @@
           <a
             href="#"
             class="text-lg font-semibold tracking-widest text-white uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
-            >Admin</a
+            ><?php echo $_SESSION['role_name']; ?></a
           >
           <!-- this is maybe where i would add logout button -->
         <div>  

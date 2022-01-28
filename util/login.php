@@ -42,7 +42,21 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                 $_SESSION['firstname']=$row['firstname'];
 
                 $_SESSION['id'] = $row['id'];
+                 
+                $_SESSION['type']=$row['type'];
 
+                if($_SESSION['type']==1)
+                {
+                    $_SESSION['role_name']="ADMIN";
+                    $_SESSION['position']="Manager";
+                }
+                
+                else
+                {
+                    $_SESSION['role_name']="STAFF";
+                    $_SESSION['position']="Booking Clerk";
+                }
+                
                 $remember=$_POST['remember'];
                 if($remember==1)
                 {
