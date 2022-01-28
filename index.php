@@ -1,10 +1,3 @@
-<?php 
-
-session_start();
-
-if (!(isset($_SESSION['id']) && isset($_SESSION['email']))) {
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +31,8 @@ if (!(isset($_SESSION['id']) && isset($_SESSION['email']))) {
                 type="text"
                 name="uname"
                 placeholder="Username"
+                value="<?php if(isset($_COOKIE["uname"])) echo $_COOKIE["uname"]; ?>"
+                required
               />
               <input
                 class="bg-gray-100 m-4 appearance-none border-2 border-gray-200 rounded lg:w-3/5 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -45,10 +40,12 @@ if (!(isset($_SESSION['id']) && isset($_SESSION['email']))) {
                 type="password"
                 name="password"
                 placeholder="Password"
+                value="<?php if(isset($_COOKIE["upass"])) echo $_COOKIE["upass"]; ?>"
+                required
               />
               <div class="mb-6">
                 <label class="text-gray-500 font-bold">
-                  <input class="mr-2 leading-tight" type="checkbox" />
+                  <input class="mr-2 leading-tight" type="checkbox"  name="remember" value="1" />
                   <span class="text-sm"> Keep me logged in </span>
                 </label>
               </div>
@@ -75,16 +72,3 @@ if (!(isset($_SESSION['id']) && isset($_SESSION['email']))) {
     </form>
   </body>
 </html>
-
-<?php 
-
-}
-else{
-
-     header("Location: dashboard.php");
-
-     exit();
-
-}
-
- ?>

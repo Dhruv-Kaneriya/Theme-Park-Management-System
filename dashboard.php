@@ -1,9 +1,6 @@
 <?php 
 
-session_start();
-
-if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
-
+include_once("util/session.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +21,13 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
     ></script>
     <title>DashBoard</title>
     <script src="http://kit.fontawesome.com/a076d05399.js"></script>
+
+
+    <style>
+      .h-screen{
+        align-items:start;
+      }
+      </style>
 </head>
 <body
     style="background: #F3F3FF"
@@ -68,16 +72,5 @@ if (isset($_SESSION['id']) && isset($_SESSION['email'])) {
       </div>
     </div>
   </body>
+
 </html>
-<?php 
-
-}
-else{
-
-     header("Location: index.php");
-
-     exit();
-
-}
-
- ?>

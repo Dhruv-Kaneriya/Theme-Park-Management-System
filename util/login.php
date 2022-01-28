@@ -20,27 +20,36 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
     $uname = validate($_POST['uname']);
 
-    $pass = validate($_POST['password']);
+    $upass = validate($_POST['password']);
+
 
         $sql = "SELECT * FROM users WHERE email='$uname' AND password='$pass'";
       
+
 
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) === 1) {
 
-            $row = mysqli_fetch_assoc($result);
+            $row = mysqli_fetch_array($result);
 
-            if ($row['email'] === $uname && $row['password'] === $pass) {
+            if ($row['email'] === $uname && $row['password'] === $upass) {
 
                 echo "Logged in!";
 
-                $_SESSION['email'] = $row['email'];
+                
 
                 $_SESSION['firstname']=$row['firstname'];
 
                 $_SESSION['id'] = $row['id'];
 
+                $remember=$_POST['remember'];
+                if($remember==1)
+                {
+                    setcookie('uname',$uname,time()+60*60*24,"/");
+                    setcookie('upass',$uname,time()+60*60*24,"/");
+                    header("Location: ../dashboard.php");
+                }
                 header("Location: ../dashboard.php");
 
                 exit();
