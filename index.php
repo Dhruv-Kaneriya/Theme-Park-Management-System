@@ -1,3 +1,52 @@
+<?php 
+ 
+ session_start();
+ if(isset($_SESSION['id']))
+  {
+    header("Location: dashboard.php");
+    exit();
+  }
+ 
+ if(isset($_COOKIE["uname"]) && isset($_COOKIE["upass"])){ 
+
+    $uname = $_COOKIE["uname"];
+    $upass = $_COOKIE["upass"];
+
+    function validate($data){
+      return htmlspecialchars(stripslashes(trim($data)));
+    }
+
+    $uname = validate($uname);
+    $upass = validate($upass);
+
+
+    include "Database/db_conn.php";
+    $sql = "SELECT * FROM users WHERE email='$uname' ";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) === 1) {
+      $row = mysqli_fetch_array($result);
+      if (password_verify($upass , $row['password'])) {
+        $_SESSION['firstname']=$row['firstname'];
+        $_SESSION['id'] = $row['id'];         
+        $type=$row['type'];
+
+      if($type==1){
+          $_SESSION['role_name']="ADMIN";
+          $_SESSION['position']="Manager";
+        }        
+      else{
+          $_SESSION['role_name']="STAFF";
+          $_SESSION['position']="Booking Clerk";
+        }
+        header("Location: dashboard.php");
+        exit();
+      }
+    }
+  } 
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +80,6 @@
                 type="text"
                 name="uname"
                 placeholder="Username"
-                value="<?php if(isset($_COOKIE["uname"])) echo $_COOKIE["uname"]; ?>"
                 required
               />
               <input
@@ -40,7 +88,6 @@
                 type="password"
                 name="password"
                 placeholder="Password"
-                value="<?php if(isset($_COOKIE["upass"])) echo $_COOKIE["upass"]; ?>"
                 required
               />
               <div class="mb-6">
