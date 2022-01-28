@@ -23,7 +23,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
     $upass = validate($_POST['password']);
 
 
-        $sql = "SELECT * FROM users WHERE email='$uname' AND password='$upass'";
+        $sql = "SELECT * FROM users WHERE email='$uname' ";
       
 
 
@@ -33,8 +33,8 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
             $row = mysqli_fetch_array($result);
 
-            if ($row['email'] === $uname && $row['password'] === $upass) {
-
+            if (password_verify($upass, $row['password'])) {
+                
                 echo "Logged in!";
 
                 
