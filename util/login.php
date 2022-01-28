@@ -23,7 +23,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
     $upass = validate($_POST['password']);
 
 
-        $sql = "SELECT * FROM users WHERE email='$uname' AND password='$pass'";
+        $sql = "SELECT * FROM users WHERE email='$uname' AND password='$upass'";
       
 
 
@@ -47,7 +47,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                 if($remember==1)
                 {
                     setcookie('uname',$uname,time()+60*60*24,"/");
-                    setcookie('upass',$uname,time()+60*60*24,"/");
+                    setcookie('upass',$upass,time()+60*60*24,"/");
                     header("Location: ../dashboard.php");
                 }
                 header("Location: ../dashboard.php");
