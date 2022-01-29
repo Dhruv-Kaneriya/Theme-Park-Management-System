@@ -7,29 +7,20 @@
     exit();
   }
  
- if(isset($_COOKIE["uname"]) && isset($_COOKIE["upass"])){ 
+ if(isset($_COOKIE['__SECUREx_cookie'])){ 
 
-    $uname = $_COOKIE["uname"];
-    $upass = $_COOKIE["upass"];
-
-    function validate($data){
-      return htmlspecialchars(stripslashes(trim($data)));
-    }
-
-    $uname = validate($uname);
-    $upass = validate($upass);
-
+    $cookie_st = $_COOKIE['__SECUREx_cookie'];
 
     include "Database/db_conn.php";
-    $sql = "SELECT * FROM users WHERE email='$uname' ";
-    $result = mysqli_query($conn, $sql);
+    $sql_cookie = "SELECT cookies.cookie,cookies.user_id,users.firstname,users.type FROM cookies,users WHERE users.id = cookies.user_id AND cookies.cookie =  '$cookie_st' ";
+    $result = mysqli_query($conn, $sql_cookie);
 
     if (mysqli_num_rows($result) === 1) {
       $row = mysqli_fetch_array($result);
-      if (password_verify($upass , $row['password'])) {
-        $_SESSION['firstname']=$row['firstname'];
-        $_SESSION['id'] = $row['id'];         
-        $type=$row['type'];
+      
+      $_SESSION['firstname']=$row['firstname'];
+      $_SESSION['id'] = $row['user_id'];         
+      $type=$row['type'];
 
       if($type==1){
           $_SESSION['role_name']="ADMIN";
@@ -43,10 +34,7 @@
         exit();
       }
     }
-  } 
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">

@@ -60,9 +60,14 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                 $remember=$_POST['remember'];
                 if($remember==1)
                 {
-                    setcookie('uname',$uname,time()+60*60*24,"/");
-                    setcookie('upass',$upass,time()+60*60*24,"/");
-                    header("Location: ../dashboard.php");
+                    
+                    $random_cookie = bin2hex(random_bytes(60));
+                    $uid = $_SESSION['id'];
+                    $sql_insert = "INSERT INTO cookies (cookie , user_id) VALUES('$random_cookie','$uid')";
+                    $new_result = mysqli_query($conn, $sql_insert);
+                    setcookie('__SECUREx_cookie',$random_cookie,time()+60*60*24,"/");
+        
+                   
                 }
                 header("Location: ../dashboard.php");
 
