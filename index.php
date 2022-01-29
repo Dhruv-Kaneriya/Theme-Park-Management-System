@@ -1,3 +1,40 @@
+<?php 
+ 
+ session_start();
+ if(isset($_SESSION['id']))
+  {
+    header("Location: dashboard.php");
+    exit();
+  }
+ 
+ if(isset($_COOKIE['__SECUREx_cookie'])){ 
+
+    $cookie_st = $_COOKIE['__SECUREx_cookie'];
+
+    include "Database/db_conn.php";
+    $sql_cookie = "SELECT cookies.cookie,cookies.user_id,users.firstname,users.type FROM cookies,users WHERE users.id = cookies.user_id AND cookies.cookie =  '$cookie_st' ";
+    $result = mysqli_query($conn, $sql_cookie);
+
+    if (mysqli_num_rows($result) === 1) {
+      $row = mysqli_fetch_array($result);
+      
+      $_SESSION['firstname']=$row['firstname'];
+      $_SESSION['id'] = $row['user_id'];         
+      $type=$row['type'];
+
+      if($type==1){
+          $_SESSION['role_name']="ADMIN";
+          $_SESSION['position']="Manager";
+        }        
+      else{
+          $_SESSION['role_name']="STAFF";
+          $_SESSION['position']="Booking Clerk";
+        }
+        header("Location: dashboard.php");
+        exit();
+      }
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +68,6 @@
                 type="text"
                 name="uname"
                 placeholder="Username"
-                value="<?php if(isset($_COOKIE["uname"])) echo $_COOKIE["uname"]; ?>"
                 required
               />
               <input
@@ -40,7 +76,6 @@
                 type="password"
                 name="password"
                 placeholder="Password"
-                value="<?php if(isset($_COOKIE["upass"])) echo $_COOKIE["upass"]; ?>"
                 required
               />
               <div class="mb-6">
