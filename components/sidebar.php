@@ -1,6 +1,10 @@
 
 <!-- will have to add functionality so we can change clicked button using variable  -->
 
+<?php 
+  $page_uri =  explode("/" , $_SERVER['REQUEST_URI'])[2]; 
+?>
+
 <div class="md:h-screen overflow-hidden flex items-center justify-center">
     <div class="md:flex flex-col md:flex-row md:min-h-screen w-full">
       <div
@@ -16,27 +20,8 @@
             class="text-lg font-semibold tracking-widest text-white uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
             ><?php echo $_SESSION['role_name']; ?></a
           >
-          <!-- this is maybe where i would add logout button -->
         <div>  
-          <!-- <button
-            class="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
-            @click="open = !open"
-          >
-            <svg fill="#FFFFFF" viewBox="0 0 20 20" class="w-6 h-6">
-              <path
-                x-show="!open"
-                fill-rule="evenodd"
-                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM9 15a1 1 0 011-1h6a1 1 0 110 2h-6a1 1 0 01-1-1z"
-                clip-rule="evenodd"
-              ></path>
-              <path
-                x-show="open"
-                fill-rule="evenodd"
-                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </button> -->
+         
           <button
             class="rounded-lg md:hidden focus:outline-none focus:shadow-outline"
             @click="open = !open"
@@ -63,7 +48,7 @@
           class="flex-grow md:block px-4 pb-4 md:pb-0 md:overflow-y-auto"
         >
           <a
-            class="flex items-center px-4 py-2 mt-2 text-sm font-semibold text-gray-900 bg-gray-200 rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+            class="<?php if($page_uri == 'dashboard.php') echo "text-gray-900 bg-gray-200"?> flex items-center text-white px-4 py-2 mt-2 text-sm font-semibold rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
             href="#"
           >
             <svg
@@ -121,7 +106,7 @@
               </svg>
             </button>
             <div
-              x-show="open"
+              x-show="<?php if($page_uri == 'addrides.php' || $page_uri == 'rideslist.php'){echo "1";}else {echo "open";} ?>"
               x-transition:enter="transition ease-out duration-100"
               x-transition:enter-start="transform opacity-0 scale-95"
               x-transition:enter-end="transform opacity-100 scale-100"
@@ -134,8 +119,8 @@
                 class="px-2 py-2 bg-green-700 rounded-md shadow dark-mode:bg-gray-800"
               >
                 <a
-                  class="block px-4 py-2 mt-2 text-sm text-white font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                  href="#"
+                  class="<?php if($page_uri == 'addrides.php') echo "text-gray-900 bg-gray-200" ?> block px-4 py-2 mt-2 text-sm text-white font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  href="addrides.php"
                   >Add Rides</a
                 >
                 <a
@@ -147,8 +132,8 @@
             </div>
           </div>
           <a
-            class="block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-            href="#"
+            class="<?php if($page_uri == 'pricing.php') echo "text-gray-900 bg-gray-200"?> block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+            href="pricing.php"
             ><svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-6 w-6 mr-2 inline"
