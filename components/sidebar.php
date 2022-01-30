@@ -3,6 +3,13 @@
 
 <?php 
   $page_uri =  explode("/" , $_SERVER['REQUEST_URI'])[2]; 
+
+if(isset($_SESSION['role_name']))
+{
+    $role = $_SESSION['role_name'];
+    
+}
+
 ?>
 
 <div class="md:h-screen overflow-hidden flex items-center justify-center">
@@ -67,6 +74,7 @@
             </svg>
             <span>Dashboard</span></a
           >
+          <?php if($role == 'ADMIN'): ?>
           <div
             @click.away="open = false"
             class="relative"
@@ -131,6 +139,7 @@
               </div>
             </div>
           </div>
+          
           <a
             class="<?php if($page_uri == 'pricing.php') echo "text-gray-900 bg-gray-200"?> block px-4 py-2 mt-2 text-sm font-semibold text-white bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
             href="pricing.php"
@@ -150,6 +159,7 @@
             </svg>
             <span>Pricing</span></a
           >
+          <?php endif; ?>
           <div
             @click.away="open = false"
             class="relative"
@@ -213,6 +223,7 @@
               </div>
             </div>
           </div>
+          <?php if($role == 'ADMIN'): ?>
           <div
             @click.away="open = false"
             class="relative"
@@ -277,6 +288,7 @@
               </div>
             </div>
           </div>
+          <?php endif; ?>
         </nav>
       </div>
     </div>
