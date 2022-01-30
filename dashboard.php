@@ -1,7 +1,4 @@
-<?php 
-
-include_once("util/session.php");
-?>
+<?php include_once("util/session.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +6,6 @@ include_once("util/session.php");
     <?php include 'util/links.php' ?>
     <title>DashBoard</title>
 
-
-    <style>
-      .h-screen{
-        align-items:start;
-      }
-      </style>
 </head>
 <body
     style="background: #F3F3FF"

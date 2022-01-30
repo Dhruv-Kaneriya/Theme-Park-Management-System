@@ -4,11 +4,11 @@
 <?php 
   $page_uri =  explode("/" , $_SERVER['REQUEST_URI'])[2]; 
 
-if(isset($_SESSION['role_name']))
-{
-    $role = $_SESSION['role_name'];
-    
-}
+  if(isset($_SESSION['role_name']))
+  {
+      $role = $_SESSION['role_name'];
+      
+  }
 
 ?>
 
@@ -23,7 +23,7 @@ if(isset($_SESSION['role_name']))
           class="flex-shrink-0 px-8 py-4 flex flex-row items-center justify-between"
         >
           <a
-            href="#"
+            href="dashboard.php"
             class="text-lg font-semibold tracking-widest text-white uppercase rounded-lg dark-mode:text-white focus:outline-none focus:shadow-outline"
             ><?php echo $_SESSION['role_name']; ?></a
           >
@@ -56,7 +56,7 @@ if(isset($_SESSION['role_name']))
         >
           <a
             class="<?php if($page_uri == 'dashboard.php') echo "text-gray-900 bg-gray-200"?> flex items-center text-white px-4 py-2 mt-2 text-sm font-semibold rounded-lg dark-mode:bg-gray-700 dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-            href="#"
+            href="dashboard.php"
           >
             <svg
               class="inline h-6 w-6 mr-2"
@@ -132,8 +132,8 @@ if(isset($_SESSION['role_name']))
                   >Add Rides</a
                 >
                 <a
-                  class="block px-4 py-2 mt-2 text-sm text-white font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                  href="#"
+                  class="<?php if($page_uri == 'rideslist.php') echo "text-gray-900 bg-gray-200"?> block px-4 py-2 mt-2 text-sm text-white font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  href="rideslist.php"
                   >Rides List</a
                 >
               </div>
@@ -198,7 +198,7 @@ if(isset($_SESSION['role_name']))
               </svg>
             </button>
             <div
-              x-show="open"
+              x-show="<?php if($page_uri == 'addticket.php' || $page_uri == 'ticketlist.php'){echo "1";}else {echo "open";} ?>"
               x-transition:enter="transition ease-out duration-100"
               x-transition:enter-start="transform opacity-0 scale-95"
               x-transition:enter-end="transform opacity-100 scale-100"
@@ -211,13 +211,13 @@ if(isset($_SESSION['role_name']))
                 class="px-2 py-2 bg-green-700 rounded-md shadow dark-mode:bg-gray-800"
               >
                 <a
-                  class="block px-4 py-2 mt-2 text-sm text-white font-semibold rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                  href="#"
+                  class="<?php if($page_uri == 'addticket.php') echo "text-gray-900 bg-gray-200"?> block px-4 py-2 mt-2 text-sm text-white font-semibold rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  href="addticket.php"
                   >Add Ticket</a
                 >
                 <a
-                  class="block px-4 py-2 mt-2 text-sm text-white font-semibold rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                  href="#"
+                  class="<?php if($page_uri == 'ticketlist.php') echo "text-gray-900 bg-gray-200"?> block px-4 py-2 mt-2 text-sm text-white font-semibold rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  href="ticketlist.php"
                   >Tickets List</a
                 >
               </div>
@@ -263,7 +263,7 @@ if(isset($_SESSION['role_name']))
               </svg>
             </button>
             <div
-              x-show="open"
+              x-show="<?php if($page_uri == 'addstaff.php' || $page_uri == 'stafflist.php'){echo "1";}else {echo "open";} ?>"
               x-transition:enter="transition ease-out duration-100"
               x-transition:enter-start="transform opacity-0 scale-95"
               x-transition:enter-end="transform opacity-100 scale-100"
@@ -276,13 +276,13 @@ if(isset($_SESSION['role_name']))
                 class="px-2 py-2 bg-green-700 rounded-md shadow dark-mode:bg-gray-800"
               >
                 <a
-                  class="block px-4 py-2 mt-2 text-sm text-white font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                  href="#"
+                  class="<?php if($page_uri == 'addstaff.php') echo "text-gray-900 bg-gray-200"?> block px-4 py-2 mt-2 text-sm text-white font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  href="addstaff.php"
                   >Add Staff</a
                 >
                 <a
-                  class="block px-4 py-2 mt-2 text-sm text-white font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
-                  href="#"
+                  class="<?php if($page_uri == 'stafflist.php') echo "text-gray-900 bg-gray-200"?> block px-4 py-2 mt-2 text-sm text-white font-semibold bg-transparent rounded-lg dark-mode:bg-transparent dark-mode:hover:bg-gray-600 dark-mode:focus:bg-gray-600 dark-mode:focus:text-white dark-mode:hover:text-white dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200 focus:outline-none focus:shadow-outline"
+                  href="stafflist.php"
                   >Staff List</a
                 >
               </div>
