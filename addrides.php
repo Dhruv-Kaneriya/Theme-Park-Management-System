@@ -5,7 +5,7 @@
 <head>
     <?php include 'util/links.php' ?>
 
-    <title>Pricing</title>
+    <title>Add Rides</title>
 </head>
 <body style="background: #F3F3FF">
 <div class="md:flex">
