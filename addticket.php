@@ -1,5 +1,5 @@
 <?php include 'util/session.php' ?>
-<?php include 'util/isadmin.php' ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
