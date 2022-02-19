@@ -17,7 +17,12 @@
          <div class=" bg-white m-4 rounded-lg mt-8 font-bold">
             <div class="border-b-2 p-4 lg:p-8 flex justify-between">
                <p class="text-2xl lg:text-3xl font-bold">Rides List</p>
-               <button class="shadow w-25 bg-green-900 hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">+ &nbsp; Add Ride</button>
+               <a href="addrides.php" class="shadow text-lg bg-green-900 flex items-center hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  <span class="text-sm "> Add Rides</span>
+               </a>
             </div>
             <div class="flex flex-col">
                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">

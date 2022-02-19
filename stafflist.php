@@ -17,7 +17,12 @@
          <div class=" bg-white m-4 rounded-lg mt-8 font-bold">
             <div class="border-b-2 p-4 lg:p-8 flex justify-between">
                <p class="text-2xl lg:text-3xl font-bold">Staff List</p>
-               <button class="shadow w-25 bg-green-900 hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">+ &nbsp; Add Staff</button>
+               <a href="addstaff.php" class="shadow text-lg bg-green-900 flex items-center hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
+                  </svg>
+                  <span class="text-sm "> Add Staff</span>
+               </a>
             </div>
             <div class="flex flex-col">
                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -28,18 +33,18 @@
                            <tbody class="mx-8 ">
 
                               <tr class="bg-transparent dark:bg-gray-800 dark:border-gray-700 text-left">
-                              <td class="py-1 px-6 text-sm  whitespace-nowrap dark:text-gray-400"> 
+                                 <td class="py-1 px-6 text-sm  whitespace-nowrap dark:text-gray-400">
                                     <h1 class="text-xl font-bold">Admin</h1>
                                     <p class="text-base text-gray-600">Admin</p>
                                  </td>
-                                 
+
                                  <td class="py-1 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                                     <h1 class="text-xl font-bold">admin@admin.com</h1>
                                     <p class="text-base text-gray-600">Email</p>
                                  </td>
                                  <td class="w-21 pr-4 py-1 text-sm text-gray-600 whitespace-nowrap dark:text-gray-400 flex justify-evenly">
-                                 
-                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="#0066FF">
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="#0066FF">
                                        <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
                                        <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd" />
                                     </svg>
@@ -51,11 +56,11 @@
                               </tr>
 
                               <tr class="bg-transparent dark:bg-gray-800 dark:border-gray-700 text-left">
-                              <td class="py-1 px-6 text-sm  whitespace-nowrap dark:text-gray-400"> 
+                                 <td class="py-1 px-6 text-sm  whitespace-nowrap dark:text-gray-400">
                                     <h1 class="text-xl font-bold">Johnson</h1>
                                     <p class="text-base text-gray-600">Staff</p>
                                  </td>
-                                
+
                                  <td class="py-1 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
                                     <h1 class="text-xl font-bold">johnson@gmail.com</h1>
                                     <p class="text-base text-gray-600">Email</p>
@@ -72,12 +77,12 @@
                               </tr>
 
                               <tr class="bg-transparent dark:bg-gray-800 dark:border-gray-700 text-left">
-                              <td class="py-1 px-6 text-sm  whitespace-nowrap dark:text-gray-400">
+                                 <td class="py-1 px-6 text-sm  whitespace-nowrap dark:text-gray-400">
                                     <h1 class="text-xl font-bold">Charles</h1>
                                     <p class="text-base text-gray-600">Staff</p>
                                  </td>
                                  <td class="py-1 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white ">
-                                 
+
                                     <h1 class="text-xl font-bold">charles02@gmail.com</h1>
                                     <p class="text-base text-gray-600">Email</p>
                                  </td>
@@ -97,8 +102,6 @@
                         <p class="font-bold text-blue-700 text-base text-right pr-8 mb-6"> <a href="#">Show More Records</a> </p>
                      </div>
                   </div>
-
-
 </body>
 
 </html>
