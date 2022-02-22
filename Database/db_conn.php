@@ -1,19 +1,18 @@
 <?php
 
-$sname= "localhost";
+$sname = "bbbd0qmejtgmtiatmsds-mysql.services.clever-cloud.com";
 
-$unmae= "root";
+$unmae = "unr9tbwqvpvohnns";
 
-$password = "";
+echo $_ENV['env_database_password'];
 
-$db_name = "my_project";
+$password = $_ENV['env_database_password'];
+
+$db_name = "bbbd0qmejtgmtiatmsds";
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 
 if (!$conn) {
 
     echo "Connection failed!";
-
 }
-
-?>
