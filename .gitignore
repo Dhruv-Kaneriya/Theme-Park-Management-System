@@ -1,4 +1,6 @@
 tailwind.config.js
+vendor
+.env
 # dependencies
 /node_modules
 /.pnp
@@ -20,4 +22,4 @@ tailwind.config.js
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-Database/db_conn.php
+

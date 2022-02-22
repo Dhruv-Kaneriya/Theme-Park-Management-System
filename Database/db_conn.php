@@ -1,14 +1,17 @@
 <?php
 
-$sname = "bbbd0qmejtgmtiatmsds-mysql.services.clever-cloud.com";
+require_once realpath($_SERVER['DOCUMENT_ROOT'] . "/Theme-Park-Management-System/vendor/autoload.php");
 
-$unmae = "unr9tbwqvpvohnns";
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . "/Theme-Park-Management-System");
+$dotenv->load();
 
-echo $_ENV['env_database_password'];
+$sname = $_ENV['db_server_name'];
 
-$password = $_ENV['env_database_password'];
+$unmae = $_ENV['db_username'];
 
-$db_name = "bbbd0qmejtgmtiatmsds";
+$password = $_ENV['db_password'];
+
+$db_name = $_ENV['db_name'];
 
 $conn = mysqli_connect($sname, $unmae, $password, $db_name);
 
