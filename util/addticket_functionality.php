@@ -6,7 +6,6 @@ include "../Database/db_conn.php";
 
 if (isset($_POST['customer_name']) && isset($_POST['select_ride']) && isset($_POST['no_child']) && isset($_POST['no_adult'])) {
 
-    echo "inside";
 
     function validate($data)
     {
