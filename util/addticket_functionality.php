@@ -38,6 +38,6 @@ if (isset($_POST['customer_name']) && isset($_POST['select_ride']) && isset($_PO
     if ($conn->query($sql) === TRUE) {
         header("Location: ../addticket.php?status=Record inserted successfully");
     } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
+        header("Location: ../addticket.php?error=" . $conn->error);
     }
 }

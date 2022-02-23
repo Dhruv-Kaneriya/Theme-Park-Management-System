@@ -58,7 +58,7 @@
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-green-700 focus:outline-none" aria-label="Select Ride">
-                  <option selected>Please select</option>
+                  <option disabled selected>---Please select---</option>
                   <option value="Roller Coaster">Roller Coaster</option>
                   <option value="Bumber Boats">Bumber Boats</option>
                   <option value="The Mechanical Bull">The Mechanical Bull</option>
@@ -99,7 +99,11 @@
               <?php if (isset($_GET['status'])) { ?>
                 <p class="text-sm text-green-600"> <?php echo $_GET['status'] ?> </p>
               <?php } ?>
+              <?php if (isset($_GET['error'])) { ?>
+                <p class="text-sm text-red-600"> <?php echo $_GET['error'] ?> </p>
+              <?php } ?>
             </div>
+
 
           </form>
         </div>
