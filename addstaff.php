@@ -30,7 +30,7 @@
               </div>
               <div class="pb-4 flex-1 lg:pl-8">
                 <p class=" pl-2 pb-2">Email Id</p>
-                <input type="text" required name="email_id" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input type="email" required name="email_id" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
               </div>
             </div>
             <div class=" lg:flex">
@@ -40,7 +40,7 @@
               </div>
               <div class="pb-4 flex-1 lg:pl-8">
                 <p class=" pl-2 pb-2">Password</p>
-                <input type="text" required id="password" name="password" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input type="password" required id="password" name="password" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
               </div>
             </div>
             <div class=" lg:flex">
@@ -70,7 +70,7 @@
               </div>
               <div class="pb-4 flex-1 lg:pl-8">
                 <p class=" pl-2 pb-2">Confirm Password</p>
-                <input type="text" required id="confirm_password" name="confirm_password" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input type="password" required id="confirm_password" name="confirm_password" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
               </div>
             </div>
 
