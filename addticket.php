@@ -58,8 +58,8 @@
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-green-700 focus:outline-none" aria-label="Select Ride">
-                  <option disabled selected>---Please select---</option>
-                  <option value="Roller Coaster">Roller Coaster</option>
+                  <option disabled>---Please select---</option>
+                  <option selected value="Roller Coaster">Roller Coaster</option>
                   <option value="Bumber Boats">Bumber Boats</option>
                   <option value="The Mechanical Bull">The Mechanical Bull</option>
                 </select>

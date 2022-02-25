@@ -39,4 +39,6 @@ if (isset($_POST['customer_name']) && isset($_POST['select_ride']) && isset($_PO
     } else {
         header("Location: ../addticket.php?error=" . $conn->error);
     }
+} else {
+    header("Location: ../addticket.php?error=unexpected error");
 }
