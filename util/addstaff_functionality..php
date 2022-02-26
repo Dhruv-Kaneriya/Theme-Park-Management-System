@@ -44,3 +44,4 @@ if (isset($_POST['first_name']) && isset($_POST['email_id']) && isset($_POST['la
 } else {
     header("Location: ../addstaff.php?error=unexpected error");
 }
+?>
