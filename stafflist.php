@@ -29,7 +29,7 @@
                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
                      <div class="overflow-hidden shadow-md sm:rounded-lg">
-                        <table class=" ride-list-table min-w-full text-center">
+                        <table class="ride-list-table min-w-full text-center">
 
                            <tbody id="postList" class=" mx-8 ">
                               <?php
@@ -93,19 +93,24 @@
                         <div class="m-4 flex justify-end">
                            <div class="load-more">
                               <input class="font-bold text-blue-700 text-base text-right pr-8 mb-6" type="button" id="loadBtn" value="Show More Records">
-                              <input type="hidden" id="row">
+                              <input type="hidden" id="row" value="0">
                               <input type="hidden" id="postCount" value="<?php echo $postCount; ?>">
                            </div>
                         </div>
                      </div>
                   </div>
+                           </div>
+                           </div>
+                           </div>
+                           </div>
+                           </div>
                   <script>
                      $(document).ready(function() {
                         $(document).on('click', '#loadBtn', function() {
-                           var row = 0
+                           var row = Number($('#row').val());
                            var count = Number($('#postCount').val());
                            var limit = 3;
-                           row = Number(row) + Number(limit);
+                           row = row + limit;
                            $('#row').val(row);
                            $("#loadBtn").val('Loading...');
 
