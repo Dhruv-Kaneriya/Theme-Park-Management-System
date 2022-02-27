@@ -8,6 +8,7 @@
    <link rel="stylesheet" href="styles/ridelist.css">
    <title>Staff List</title>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <link rel="stylesheet" href="styles/general.css">
 </head>
 
 <body style="background: #F3F3FF">
@@ -26,9 +27,9 @@
                </a>
             </div>
             <div class="flex flex-col">
-               <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+               <div class="overflow-x-auto overflow-y-auto view-height sm:text-sm sm:-mx-6 lg:-mx-8">
                   <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                     <div class="overflow-hidden shadow-md sm:rounded-lg">
+                     <div class="overflow-hidden ml-4 shadow-md sm:rounded-lg">
                         <table class="ride-list-table min-w-full text-center">
 
                            <tbody id="postList" class=" mx-8 ">
@@ -99,47 +100,47 @@
                         </div>
                      </div>
                   </div>
-                           </div>
-                           </div>
-                           </div>
-                           </div>
-                           </div>
-                  <script>
-                     $(document).ready(function() {
-                        $(document).on('click', '#loadBtn', function() {
-                           var row = Number($('#row').val());
-                           var count = Number($('#postCount').val());
-                           var limit = 3;
-                           row = row + limit;
-                           $('#row').val(row);
-                           $("#loadBtn").val('Loading...');
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <script>
+      $(document).ready(function() {
+         $(document).on('click', '#loadBtn', function() {
+            var row = Number($('#row').val());
+            var count = Number($('#postCount').val());
+            var limit = 3;
+            row = row + limit;
+            $('#row').val(row);
+            $("#loadBtn").val('Loading...');
 
-                           $.ajax({
-                              type: 'POST',
-                              url: 'util/loadmore-data.php',
-                              data: 'row=' + row,
-                              success: function(data) {
-                                 console.log('rowCount', rowCount)
-                                 console.log('count', count)
-                                 console.log('limit', limit)
-                                 console.log('row', row)
-                                 var rowCount = row + limit;
-                                 $('#postList').append(data);
-                                 console.log('rowCount', rowCount)
-                                 console.log('count', count)
-                                 console.log('limit', limit)
-                                 console.log('row', row)
+            $.ajax({
+               type: 'POST',
+               url: 'util/loadmore-data.php',
+               data: 'row=' + row,
+               success: function(data) {
+                  console.log('rowCount', rowCount)
+                  console.log('count', count)
+                  console.log('limit', limit)
+                  console.log('row', row)
+                  var rowCount = row + limit;
+                  $('#postList').append(data);
+                  console.log('rowCount', rowCount)
+                  console.log('count', count)
+                  console.log('limit', limit)
+                  console.log('row', row)
 
-                                 if (rowCount >= count) {
-                                    $('#loadBtn').css("display", "none");
-                                 } else {
-                                    $("#loadBtn").val('Load More');
-                                 }
-                              }
-                           });
-                        });
-                     });
-                  </script>
+                  if (rowCount >= count) {
+                     $('#loadBtn').css("display", "none");
+                  } else {
+                     $("#loadBtn").val('Load More');
+                  }
+               }
+            });
+         });
+      });
+   </script>
 
 </body>
 
