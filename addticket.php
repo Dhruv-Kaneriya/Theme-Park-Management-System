@@ -68,12 +68,13 @@
                   $i = 0;
                   while ($res = mysqli_fetch_array($result)) {
                     $subtable = [
+
                       "adult_price" => $res['adult_price'],
                       "child_price" => $res['child_price']
-                    ];;
-                    $ride_list[$res['ride_name']] = $subtable;
+                    ];
+                    $ride_list[$res['ride_id']] = $subtable;
                   ?>
-                    <option selected value=<?php echo $res['ride_name'] ?>><?php echo $res['ride_name'] ?></option>
+                    <option selected value=<?php echo $res['ride_id'] ?>><?php echo $res['ride_name'] ?></option>
                   <?php
                   }
                   ?>
@@ -139,7 +140,6 @@
     function updatePrice() {
 
       total = Number(ride_list[selected_ride.value]['adult_price']) * Number(no_adult.value) + Number(ride_list[selected_ride.value]["child_price"]) * Number(no_child.value)
-
 
       total_amount.value = total
     }

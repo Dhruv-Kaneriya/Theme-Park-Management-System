@@ -26,7 +26,7 @@
                         // path is from relative to dashboard 
                         include "Database/db_conn.php";
 
-                        $sql = "SELECT * FROM tickets_list order by date_issued DESC";
+                        $sql = "SELECT customer_name , no_adult , no_child , date_issued ,ride_list.ride_name FROM tickets_list,ride_list where ride_list.ride_id = tickets_list.ride_id order by date_issued DESC";
 
                         $result = mysqli_query($conn, $sql);
 
