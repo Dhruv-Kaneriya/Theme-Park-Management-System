@@ -16,10 +16,7 @@
 
     }
   </style>
-
 </head>
-
-
 
 <body style="background: #F3F3FF">
   <div class="md:flex">
