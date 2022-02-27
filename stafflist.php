@@ -27,9 +27,9 @@
                </a>
             </div>
             <div class="flex flex-col">
-               <div class="overflow-x-auto overflow-y-auto view-height sm:text-sm sm:-mx-6 lg:-mx-8">
-                  <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                     <div class="overflow-hidden ml-4 shadow-md sm:rounded-lg">
+               <div class="overflow-x-auto overflow-y-auto view-height sm:text-sm">
+                  <div class="inline-block py-2 min-w-full sm:px-6 lg:px-3">
+                     <div class="overflow-hidden shadow-md sm:rounded-lg">
                         <table class="ride-list-table min-w-full text-center">
 
                            <tbody id="postList" class=" mx-8 ">
