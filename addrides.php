@@ -19,29 +19,37 @@
                     <p class="text-2xl lg:text-3xl font-bold">Add Rides</p>
                 </div>
                 <div class="p-4 lg:p-8">
-                    <form action="#">
+                    <form action="util/addride_functionality.php" method="POST">
                         <div class="pb-4">
                             <p class=" pl-2 pb-2">Ride Name</p>
-                            <input type="text" placeholder="eg. Roller Coaster" class="text-sm w-full border-2 rounded-lg shadow appearance-none border-green-700 py-2 px-3 text-gray-700 focus:outline-none focus:border-green-700 " />
+                            <input required type="text" name="ride_name" placeholder="eg. Roller Coaster" class="text-sm w-full border-2 rounded-lg shadow appearance-none border-green-700 py-2 px-3 text-gray-700 focus:outline-none focus:border-green-700 " />
                         </div>
                         <div class="pb-4">
                             <p class=" pl-2 pb-2">Ride Description</p>
-                            <input type="text" placeholder="eg. Child's ride for fun" class="text-sm w-full border-2 rounded-lg shadow appearance-none border-green-700 py-2 px-3 text-gray-700 focus:outline-none focus:border-green-700 " />
+                            <input type="text" required name="ride_description" placeholder="eg. Child's ride for fun" class="text-sm w-full border-2 rounded-lg shadow appearance-none border-green-700 py-2 px-3 text-gray-700 focus:outline-none focus:border-green-700 " />
                         </div>
                         <div class="lg:flex">
                             <div class="pb-4 flex-1 lg:pr-8">
                                 <p class=" pl-2 pb-2">Adult Price</p>
-                                <input type="text" placeholder="eg. $400" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                                <input type="text" required name="adult_price" placeholder="eg. $400" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
                             </div>
                             <div class="pb-4 flex-1 lg:pl-8">
                                 <p class=" pl-2 pb-2">Child Price</p>
-                                <input type="text" placeholder="eg. $200" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                                <input type="text" required name="child_price" placeholder="eg. $200" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
                             </div>
                         </div>
                         <div class="pb-4 flex justify-end">
                             <button class="shadow w-full lg:w-40 lg:h-16 text-lg bg-green-900 hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mt-4 rounded" type="submit">
                                 Submit
                             </button>
+                        </div>
+                        <div class="mt-8 flex justify-center">
+                            <?php if (isset($_GET['status'])) { ?>
+                                <p class="text-sm text-green-600"> <?php echo $_GET['status'] ?> </p>
+                            <?php } ?>
+                            <?php if (isset($_GET['error'])) { ?>
+                                <p class="text-sm text-red-600"> <?php echo $_GET['error'] ?> </p>
+                            <?php } ?>
                         </div>
                     </form>
                 </div>
