@@ -6,7 +6,7 @@
 <head>
     <?php include 'util/links.php' ?>
 
-    <title>Add Rides</title>
+    <title>List Tickets</title>
 </head>
 
 <body style="background: #F3F3FF">

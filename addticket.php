@@ -33,7 +33,7 @@
             <div class=" lg:flex">
               <div class="pb-4 flex-1 lg:pr-8">
                 <p class=" pl-2 pb-2">Customer Name</p>
-                <input type="text" name="customer_name" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input type="text" required name="customer_name" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
               </div>
               <div class="pb-4 flex-1 lg:pl-8">
 
@@ -41,7 +41,7 @@
 
 
 
-                <select id="selected_ride" name="select_ride" class="form-select appearance-none 
+                <select id="selected_ride" required onchange="updatePrice()" name="select_ride" class="form-select appearance-none 
                     block
                     w-full
                     px-3
@@ -59,9 +59,26 @@
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-green-700 focus:outline-none" aria-label="Select Ride">
                   <option disabled>---Please select---</option>
-                  <option selected value="Roller Coaster">Roller Coaster</option>
-                  <option value="Bumber Boats">Bumber Boats</option>
-                  <option value="The Mechanical Bull">The Mechanical Bull</option>
+                  <?php
+                  include "Database/db_conn.php";
+
+                  $sql = "SELECT * FROM ride_list";
+
+                  $result = mysqli_query($conn, $sql);
+                  $ride_list = [];
+                  $i = 0;
+                  while ($res = mysqli_fetch_array($result)) {
+                    $subtable = [
+
+                      "adult_price" => $res['adult_price'],
+                      "child_price" => $res['child_price']
+                    ];
+                    $ride_list[$res['ride_id']] = $subtable;
+                  ?>
+                    <option selected value=<?php echo $res['ride_id'] ?>><?php echo $res['ride_name'] ?></option>
+                  <?php
+                  }
+                  ?>
                 </select>
               </div>
 
@@ -70,11 +87,11 @@
             <div class=" lg:flex">
               <div class="pb-4 flex-1 lg:pr-8">
                 <p class=" pl-2 pb-2">No. of Adult</p>
-                <input type="number" name="no_adult" placeholder="0" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input type="number" required id="adult_price" onchange="updatePrice()" name="no_adult" placeholder="0" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
               </div>
               <div class="pb-4 flex-1 lg:pl-8">
                 <p class=" pl-2 pb-2">No. of Child</p>
-                <input type="number" name="no_child" placeholder="0" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input type="number" required id="child_price" onchange="updatePrice()" name="no_child" placeholder="0" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
                 <div class="flex items-center">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mt-2" fill="none" viewBox="0 0 24 24" stroke="gray">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -88,7 +105,7 @@
             <div class=" lg:flex justify-between items-center">
               <div class="lg:flex lg:w-1/2 lg:items-center pb-8 lg:pb-0">
                 <p class="lg:pr-4 pb-2 pl-2 whitespace-nowrap">Total Amount</p>
-                <input type="text" placeholder="0" class="text-sm w-full lg:w-max border-2 rounded-lg shadow appearance-none py-2 px-3 bg-gray-400 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " disabled />
+                <input type="text" id="total_amount" value="0" placeholder="0" class="text-sm w-full lg:w-max border-2 rounded-lg shadow appearance-none py-2 px-3 bg-gray-400 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " disabled />
               </div>
               <button class="shadow w-full lg:w-40 lg:h-16 text-lg bg-green-900 hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit">
                 Submit
@@ -110,6 +127,23 @@
       </div>
     </div>
   </div>
+  <script>
+    const selected_ride = document.getElementById("selected_ride");
+    const no_adult = document.getElementById("adult_price");
+    const no_child = document.getElementById("child_price");
+    const total_amount = document.getElementById("total_amount");
+
+    var ride_list = <?php echo json_encode($ride_list); ?>;
+    console.log(ride_list);
+    let total;
+
+    function updatePrice() {
+
+      total = Number(ride_list[selected_ride.value]['adult_price']) * Number(no_adult.value) + Number(ride_list[selected_ride.value]["child_price"]) * Number(no_child.value)
+
+      total_amount.value = total
+    }
+  </script>
 </body>
 
 </html>
