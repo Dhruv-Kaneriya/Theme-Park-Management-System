@@ -33,6 +33,7 @@ if (isset($_POST['customer_name']) && isset($_POST['select_ride']) && isset($_PO
 
 
     $sql = "INSERT INTO `tickets_list` (`customer_name` , `no_adult` , `no_child` , `ride_id`) VALUES('$customer_name',$no_adult,$no_child,'$select_ride')";
+
     if ($conn->query($sql) === TRUE) {
         header("Location: ../addticket.php?status=Record inserted successfully");
     } else {

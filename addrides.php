@@ -39,10 +39,6 @@
                             </div>
                         </div>
                         <div class="pb-4 flex justify-end">
-
-                            </div>
-                        </div>
-                        <div class="pb-4 flex justify-end">
                             <button class="shadow w-full lg:w-40 lg:h-16 text-lg bg-green-900 hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mt-4 rounded" type="submit">
                                 Submit
                             </button>
