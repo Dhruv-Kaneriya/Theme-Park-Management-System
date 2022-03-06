@@ -5,7 +5,7 @@ vendor
 /node_modules
 /.pnp
 .pnp.js
-
+.idea
 # testing
 /coverage
 
