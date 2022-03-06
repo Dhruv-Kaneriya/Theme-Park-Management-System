@@ -1,8 +1,8 @@
 <?php
 
-require_once realpath($_SERVER['DOCUMENT_ROOT'] . "/Theme-Park-Management-System/vendor/autoload.php");
+require_once realpath($_SERVER['DOCUMENT_ROOT'] . "/tpms/vendor/autoload.php");
 
-$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . "/Theme-Park-Management-System");
+$dotenv = Dotenv\Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT'] . "/tpms");
 $dotenv->load();
 
 $sname = $_ENV['db_server_name'];
