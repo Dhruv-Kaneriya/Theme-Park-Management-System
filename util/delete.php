@@ -3,11 +3,22 @@
 session_start();
 
 include "../Database/db_conn.php";
-if (isset($_POST['row'])) {
-    $sql = "DELETE FROM ride_list where ride_id=".$_GET['ride_id'];
-    $mysqli->query($sql);
-    echo 'Deleted successfully.';
-}
 
+$id=$_GET['id'];
+ 
+    $query= "DELETE FROM ride_list WHERE ride_id='$id' ";
+    $data=mysqli_query($conn,$query);
+    if($data) 
+    {
+        echo "<script>alert('Record deleted successfully')</script>";
+        ?>
 
+        <meta http-equiv="refresh" content="0;url=http://localhost/tpms/rideslist.php"/>
+       
+       <?php
+
+    }
+    else{
+        echo "<script>alert('Failed to Delete')</script>";
+    }
 ?>
