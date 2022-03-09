@@ -4,6 +4,8 @@
 <html lang="en">
 
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
     <?php include 'util/links.php' ?>
 
     <title>List Tickets</title>
@@ -57,9 +59,11 @@
                                 </div>
                             </div>
                             <div class="ml-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="#FF0000">
-                                    <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                </svg>
+                                <button id="btn_delete">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" viewBox="0 0 20 20" fill="#FF0000">
+                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -88,9 +92,9 @@
                                     if ($res->num_rows > 0) {
                                         while ($row = mysqli_fetch_assoc($res)) {
                                     ?>
-                                            <tr>
+                                            <tr id="<?php echo $row['ticket_id'] ?>">
                                                 <td class=" text-left py-3 px-4 whitespace-nowrap ">
-                                                    <input type="checkbox" name="name" class=" w-5 h-5 mr-2 bg-gray-50 rounded border border-gray-400 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
+                                                    <input type="checkbox" name="name" value="<?php echo $row['ticket_id'] ?>" class=" w-5 h-5 mr-2 bg-gray-50 rounded border border-gray-400 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
                                                     <span><?php echo $row['customer_name'] ?></span>
                                                 </td>
                                                 <td class="text-left py-3 px-4"><?php echo $row['date_issued'] ?></td>
@@ -120,6 +124,48 @@
         </div>
     </div>
 
+    <script>
+        $(document).ready(function() {
+
+            $('#btn_delete').click(function() {
+
+                if (confirm("Are you sure you want to delete this?")) {
+                    var id = [];
+
+                    $(':checkbox:checked').each(function(i) {
+                        id[i] = $(this).val();
+                    });
+
+                    console.log(id)
+
+                    if (id.length === 0) //tell you if the array is empty
+                    {
+                        alert("Please Select atleast one checkbox");
+                    } else {
+                        $.ajax({
+                            url: 'util/ticketlist_delete.php',
+                            method: 'POST',
+                            data: {
+                                id: id
+                            },
+                            success: function() {
+                                for (var i = 0; i < id.length; i++) {
+                                    $('tr#' + id[i] + '').css('background-color', '#ccc');
+                                    $('tr#' + id[i] + '').fadeOut('slow');
+                                }
+                            }
+
+                        });
+
+                    }
+
+                } else {
+                    return false;
+                }
+            });
+
+        });
+    </script>
 
 </body>
 
