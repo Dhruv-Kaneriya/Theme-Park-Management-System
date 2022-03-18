@@ -97,8 +97,6 @@
                                     $page = $_GET['page'];
                                 }
 
-
-
                                 $results_per_page = 5;
                                 $page_first_result = ($page - 1) * $results_per_page;
 
@@ -174,10 +172,6 @@
     </div>
 
     <script>
-        const datefrom = document.getElementById(' datefrom');
-        const dateto = document.getElementById('dateto');
-        const tablelist_tbody = document.getElementById('tablelist_tbody');
-
         $(document).ready(function() {
             $('#btn_delete').click(function() {
                 if (confirm("Are you sure you want to delete this?")) {
