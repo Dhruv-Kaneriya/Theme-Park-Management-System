@@ -77,106 +77,109 @@
                     </div>
                 </div>
             </div>
-            <div class="py-8 w-full">
-                <div class="shadow overflow-x-auto rounded border-b border-gray-200">
-                    <table class="min-w-full bg-white ">
-                        <thead class="bg-green-800 text-white">
-                            <tr>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Customer Name</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Date</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Adults</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Children</th>
-                                <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Ride Name</th>
+            <!-- onsubmit="return " -->
+            <form action="util/test.php" method="post" target="_blank">
+                <div class="py-8 w-full">
+                    <div class="shadow overflow-x-auto rounded border-b border-gray-200">
+                        <table class="min-w-full bg-white ">
+                            <thead class="bg-green-800 text-white">
+                                <tr>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Customer Name</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Date</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Adults</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Children</th>
+                                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Ride Name</th>
 
-                            </tr>
-                        </thead>
-                        <tbody class="text-gray-700" id="tablelist_tbody">
-                            <?php
-                            // path is from relative to dashboard 
-                            require "Database/db_conn.php";
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-700" id="tablelist_tbody">
+                                <?php
+                                // path is from relative to dashboard 
+                                require "Database/db_conn.php";
 
-                            if (!isset($_GET['page'])) {
-                                $page = 1;
-                            } else {
-                                $page = $_GET['page'];
-                            }
-
-                            $results_per_page = 5;
-                            $page_first_result = ($page - 1) * $results_per_page;
-
-                            if (isset($_GET["startdate"])) {
-                                $startdate =  date('Y-m-d', strtotime($_GET["startdate"]));
-                                $enddate = date('Y-m-d', strtotime($_GET["enddate"]));
-                                $query = "SELECT * FROM tickets_list WHERE CAST(date_issued as DATE) >= '$startdate' and CAST(date_issued as DATE) <= '$enddate'; ";
-                            } else if (isset($_GET["search"])) {
-                                $searchq = $_GET['search'];
-                                $searchq = preg_replace("#[^0-9a-z]#i", "", $searchq);
-                                $query = "SELECT * FROM tickets_list WHERE customer_name LIKE '%$searchq%'";
-                            } else {
-                                $query = "select * from tickets_list";
-                            }
-                            $qw = mysqli_query($conn, $query);
-                            $number_of_result = mysqli_num_rows($qw);
-
-
-                            $number_of_page = ceil($number_of_result / $results_per_page);
-                            if (isset($_GET["startdate"])) {
-                                $startdate =  date('Y-m-d', strtotime($_GET["startdate"]));
-                                $enddate = date('Y-m-d', strtotime($_GET["enddate"]));
-                                $sql = "SELECT tickets_list.ticket_id, ride_list.ride_name, tickets_list.customer_name,tickets_list.no_adult,tickets_list.no_child,tickets_list.date_issued from ride_list,tickets_list where (ride_list.ride_id=tickets_list.ride_id) and CAST(tickets_list.date_issued as DATE) >= '$startdate' and CAST(tickets_list.date_issued as DATE) <= '$enddate' LIMIT $page_first_result  ,  $results_per_page;  ";
-                            } else if (isset($_GET['search'])) {
-                                $searchq = $_GET['search'];
-                                $searchq = preg_replace("#[^0-9a-z]#i", "", $searchq);
-                                $sql = "SELECT tickets_list.ticket_id, ride_list.ride_name, tickets_list.customer_name,tickets_list.no_adult,tickets_list.no_child,tickets_list.date_issued from ride_list,tickets_list where ride_list.ride_id=tickets_list.ride_id and  tickets_list.customer_name LIKE '%$searchq%'";
-                            } else {
-                                $sql = "SELECT tickets_list.ticket_id, ride_list.ride_name, tickets_list.customer_name,tickets_list.no_adult,tickets_list.no_child,tickets_list.date_issued from ride_list,tickets_list where ride_list.ride_id=tickets_list.ride_id LIMIT $page_first_result  ,  $results_per_page";
-                            }
-                            $res = mysqli_query($conn, $sql);
-                            if ($res->num_rows > 0) {
-                                while ($row = mysqli_fetch_assoc($res)) {
-                            ?>
-                                    <tr id="<?php echo $row['ticket_id'] ?>">
-                                        <td class=" text-left py-3 px-4 whitespace-nowrap ">
-                                            <label>
-                                                <input type="checkbox" name="name" value="<?php echo $row['ticket_id'] ?>" class=" w-5 h-5 mr-2 bg-gray-50 rounded border border-gray-400 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
-                                            </label>
-                                            <span><?php echo $row['customer_name'] ?></span>
-                                        </td>
-                                        <td class="text-left py-3 px-4"><?php echo $row['date_issued'] ?></td>
-                                        <td class="text-left py-3 px-4"><?php echo $row['no_adult'] ?></td>
-                                        <td class="text-left py-3 px-4"><?php echo $row['no_child'] ?></td>
-
-                                        <td class="text-left py-3 px-4"><?php echo $row['ride_name'] ?></td>
-                                    </tr>
-                            <?php
+                                if (!isset($_GET['page'])) {
+                                    $page = 1;
+                                } else {
+                                    $page = $_GET['page'];
                                 }
-                            }
-                            ?>
+
+                                $results_per_page = 5;
+                                $page_first_result = ($page - 1) * $results_per_page;
+
+                                if (isset($_GET["startdate"])) {
+                                    $startdate =  date('Y-m-d', strtotime($_GET["startdate"]));
+                                    $enddate = date('Y-m-d', strtotime($_GET["enddate"]));
+                                    $query = "SELECT * FROM tickets_list WHERE CAST(date_issued as DATE) >= '$startdate' and CAST(date_issued as DATE) <= '$enddate'; ";
+                                } else if (isset($_GET["search"])) {
+                                    $searchq = $_GET['search'];
+                                    $searchq = preg_replace("#[^0-9a-z]#i", "", $searchq);
+                                    $query = "SELECT * FROM tickets_list WHERE customer_name LIKE '%$searchq%'";
+                                } else {
+                                    $query = "select * from tickets_list";
+                                }
+                                $qw = mysqli_query($conn, $query);
+                                $number_of_result = mysqli_num_rows($qw);
 
 
-                        </tbody>
-                    </table>
-                    <div class="w-full h-12 border-t-2 ">
-                        <div class="flex justify-end mx-5 h-full">
+                                $number_of_page = ceil($number_of_result / $results_per_page);
+                                if (isset($_GET["startdate"])) {
+                                    $startdate =  date('Y-m-d', strtotime($_GET["startdate"]));
+                                    $enddate = date('Y-m-d', strtotime($_GET["enddate"]));
+                                    $sql = "SELECT tickets_list.ticket_id, ride_list.ride_name, tickets_list.customer_name,tickets_list.no_adult,tickets_list.no_child,tickets_list.date_issued from ride_list,tickets_list where (ride_list.ride_id=tickets_list.ride_id) and CAST(tickets_list.date_issued as DATE) >= '$startdate' and CAST(tickets_list.date_issued as DATE) <= '$enddate' LIMIT $page_first_result  ,  $results_per_page;  ";
+                                } else if (isset($_GET['search'])) {
+                                    $searchq = $_GET['search'];
+                                    $searchq = preg_replace("#[^0-9a-z]#i", "", $searchq);
+                                    $sql = "SELECT tickets_list.ticket_id, ride_list.ride_name, tickets_list.customer_name,tickets_list.no_adult,tickets_list.no_child,tickets_list.date_issued from ride_list,tickets_list where ride_list.ride_id=tickets_list.ride_id and  tickets_list.customer_name LIKE '%$searchq%'";
+                                } else {
+                                    $sql = "SELECT tickets_list.ticket_id, ride_list.ride_name, tickets_list.customer_name,tickets_list.no_adult,tickets_list.no_child,tickets_list.date_issued from ride_list,tickets_list where ride_list.ride_id=tickets_list.ride_id LIMIT $page_first_result  ,  $results_per_page";
+                                }
+                                $res = mysqli_query($conn, $sql);
+                                if ($res->num_rows > 0) {
+                                    while ($row = mysqli_fetch_assoc($res)) {
+                                ?>
+                                        <tr id="<?php echo $row['ticket_id'] ?>">
+                                            <td class=" text-left py-3 px-4 whitespace-nowrap ">
+                                                <label>
+                                                    <input type="checkbox" name="checkbox_list[]" value="<?php echo $row['ticket_id'] ?>" class=" w-5 h-5 mr-2 bg-gray-50 rounded border border-gray-400 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800">
+                                                </label>
+                                                <span><?php echo $row['customer_name'] ?></span>
+                                            </td>
+                                            <td class="text-left py-3 px-4"><?php echo $row['date_issued'] ?></td>
+                                            <td class="text-left py-3 px-4"><?php echo $row['no_adult'] ?></td>
+                                            <td class="text-left py-3 px-4"><?php echo $row['no_child'] ?></td>
 
-                            <?php if ($page > 1) { ?>
-                                <?php $url = explode("/", $_SERVER['REQUEST_URI'])[2] . (parse_url(explode("/", $_SERVER['REQUEST_URI'])[2], PHP_URL_QUERY) ? '&' : '?') . 'page=' . ($page - 1) ?>
-                                <a class="text-sm text-blue-700 m-2" href="<?php echo $url ?>">&lt; &lt; previous</a>
-                            <?php }; ?>
-                            <p class="text-sm  text-gray-900 m-2"><?php echo $page ?></p>
-                            <?php if ($page < $number_of_page) { ?>
-                                <?php $url2 = explode("/", $_SERVER['REQUEST_URI'])[2] . (parse_url(explode("/", $_SERVER['REQUEST_URI'])[2], PHP_URL_QUERY) ? '&' : '?') . 'page=' . ($page + 1) ?>
-                                <a class="text-sm text-blue-700 m-2" href="<?php echo $url2 ?>"> next &gt; &gt; </a>
-                            <?php }; ?>
+                                            <td class="text-left py-3 px-4"><?php echo $row['ride_name'] ?></td>
+                                        </tr>
+                                <?php
+                                    }
+                                }
+                                ?>
+
+
+                            </tbody>
+                        </table>
+                        <div class="w-full h-12 border-t-2 ">
+                            <div class="flex justify-end mx-5 h-full">
+
+                                <?php if ($page > 1) { ?>
+                                    <?php $url = explode("/", $_SERVER['REQUEST_URI'])[2] . (parse_url(explode("/", $_SERVER['REQUEST_URI'])[2], PHP_URL_QUERY) ? '&' : '?') . 'page=' . ($page - 1) ?>
+                                    <a class="text-sm text-blue-700 m-2" href="<?php echo $url ?>">&lt; &lt; previous</a>
+                                <?php }; ?>
+                                <p class="text-sm  text-gray-900 m-2"><?php echo $page ?></p>
+                                <?php if ($page < $number_of_page) { ?>
+                                    <?php $url2 = explode("/", $_SERVER['REQUEST_URI'])[2] . (parse_url(explode("/", $_SERVER['REQUEST_URI'])[2], PHP_URL_QUERY) ? '&' : '?') . 'page=' . ($page + 1) ?>
+                                    <a class="text-sm text-blue-700 m-2" href="<?php echo $url2 ?>"> next &gt; &gt; </a>
+                                <?php }; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="pb-4 flex justify-end">
-                <button class="shadow w-full lg:w-40 lg:h-16 text-lg bg-green-900 hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mt-4 rounded" type="submit">
-                    Export
-                </button>
-            </div>
+                <div class="pb-4 flex justify-end">
+                    <button class="shadow w-full lg:w-40 lg:h-16 text-lg bg-green-900 hover:bg-green-700 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mt-4 rounded" type="submit">
+                        Export
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
     </div>
