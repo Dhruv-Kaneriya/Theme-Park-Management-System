@@ -16,40 +16,45 @@ if (isset($_POST['checkbox_list'])) {
     }
 
     $ticket_ids = substr_replace($ticket_ids, "", -1);
-    $query = "SELECT * FROM tickets_list WHERE ticket_id in ($ticket_ids)";
+    echo "<script>console.log('Debug Objects: " . $ticket_ids . "' );</script>";
+
+    $query = "SELECT tickets_list.customer_name,tickets_list.no_adult,tickets_list.no_child,tickets_list.date_issued,ride_list.ride_name,ride_list.ride_description FROM tickets_list inner join ride_list  on  tickets_list.ride_id=ride_list.ride_id WHERE tickets_list.ticket_id in ($ticket_ids)";
     $result = mysqli_query($conn, $query);
-    $content = 0;
+    $content = '';
     if ($result->num_rows > 0) {
+        $content .= '
+        <h2>Generated Tickets</h2>
+        <table style="width: 100%;" border="1">
+        <tbody>';
         while ($row = mysqli_fetch_assoc($result)) {
-            $content = '<h2>Generated Tickets</h2>
-            <table style="width: 100%;" border="1">
-            <tbody>
+           $content.='
             <tr>
             <td style="text-align:center;vertical-align:middle;width: 10%"rowspan="6"><strong>Sr No.</strong></td>
             <td style="width: 30%; text-align: left;"><strong>Customer Name</strong></td>
-            <td style="width: 60%;">Juzar</td>
+            <td style="width: 60%;">'.$row["customer_name"].'</td>
             </tr>
             <tr>
             <td style="width: 30%; text-align: left;"><strong>Ride Name</strong></td>
-            <td style="width: 60%;">Roller Coaster</td>
+            <td style="width: 60%;">'.$row["ride_name"].'</td>
             </tr>
             <tr>
             <td style="width: 30%; text-align: left;"><strong>Ride Descripton</strong></td>
-            <td style="width: 60%;">Thrill Ride</td>
+            <td style="width: 60%;">'.$row["ride_description"].'</td>
             </tr>
             <tr>
             <td style="width: 30%; text-align: left;"><strong>No of Adult</strong></td>
-            <td style="width: 60%;">2</td>
+            <td style="width: 60%;">'.$row["no_adult"].'</td>
             </tr>
             <tr>
             <td style="width: 30%; text-align: left;"><strong>No of children</strong></td>
-            <td style="width: 60%;">3</td>
+            <td style="width: 60%;">'.$row["no_child"].'</td>
             </tr>
             <tr>
             <td style="width: 30%; text-align: left;"><strong>Date Issued</strong></td>
-            <td style="width: 60%;">15/04/2022</td>
-            </tr>
-            </tbody>
+            <td style="width: 60%;">'.$row["date_issued"].'</td>
+            </tr>      
+            ';
+            $content.='</tbody>
             </table>';
         }
     }
@@ -72,58 +77,5 @@ if (isset($_POST['checkbox_list'])) {
     ob_end_clean();
     $obj_pdf->Output('ticket.pdf', 'I');
 } else {
-    echo "noting";
+    echo "nothing";
 } ?>
-<style>
-    .column-2 {
-        float: right;
-        width: 200px;
-        height: 200px;
-    }
-
-    .event {
-        font-size: 24px;
-        color: #fff;
-        letter-spacing: 1px;
-    }
-
-    .date {
-        font-size: 18px;
-        line-height: 30px;
-        color: #a8bbf8;
-    }
-
-    .name,
-    .ticket-id {
-        font-size: 16px;
-        line-height: 22px;
-        color: #fff;
-    }
-</style>
-</head>
-
-<body>
-    <div style="width: 620px; height:200px;background-color: #4537de;">
-
-        <div style="width: 400px;
-        height: 200px;
-        border-right: 2px dashed #fff;">
-            <div style="border-style:solid; border-width: 15px;border-color:#4537de">
-                <div style=" font-size: 24px;
-        color: #fff;
-        letter-spacing: 1px;">PSPDFKit TALENT SHOW</div>
-                <div style=" font-size: 18px;
-        line-height: 30px;
-        color: #a8bbf8;">26 August, 2021</div>
-                <br />
-                <div style=" font-size: 18px;
-        line-height: 30px;
-        color: #a8bbf8;">John Smith</div>
-                <div style=" font-size: 18px;
-        line-height: 30px;
-        color: #a8bbf8;">
-                    <p>Adults 3 Kids 3</p>
-                </div>
-            </div>
-        </div>
-    </div>
