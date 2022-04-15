@@ -78,7 +78,7 @@
                 </div>
             </div>
             <!-- onsubmit="return " -->
-            <form action="util/test.php" method="post" target="_blank">
+            <form action="util/test.php" method="post" target="_blank" onsubmit="return CheckCheckboxSelected()">
                 <div class="py-8 w-full">
                     <div class="shadow overflow-x-auto rounded border-b border-gray-200">
                         <table class="min-w-full bg-white ">
@@ -186,6 +186,22 @@
     </div>
 
     <script>
+        function CheckCheckboxSelected() {
+            let id = []
+            $(':checkbox:checked').each(function(i) {
+                id[i] = $(this).val();
+            });
+            if (id.length === 0) //tell you if the array is empty 
+            {
+                alert("Please Select atleast one checkbox");
+                return false
+            } else {
+                return true
+            }
+
+
+        }
+
         $(document).ready(function() {
             $('#btn_delete').click(function() {
                 if (confirm("Are you sure you want to delete this?")) {
