@@ -16,46 +16,47 @@ if (isset($_POST['checkbox_list'])) {
     }
 
     $ticket_ids = substr_replace($ticket_ids, "", -1);
-    echo "<script>console.log('Debug Objects: " . $ticket_ids . "' );</script>";
 
     $query = "SELECT tickets_list.customer_name,tickets_list.no_adult,tickets_list.no_child,tickets_list.date_issued,ride_list.ride_name,ride_list.ride_description FROM tickets_list inner join ride_list  on  tickets_list.ride_id=ride_list.ride_id WHERE tickets_list.ticket_id in ($ticket_ids)";
     $result = mysqli_query($conn, $query);
     $content = '';
     if ($result->num_rows > 0) {
         $content .= '
-        <h2>Generated Tickets</h2>
-        <table style="width: 100%;" border="1">
-        <tbody>';
-        while ($row = mysqli_fetch_assoc($result)) {
-           $content.='
-            <tr>
-            <td style="text-align:center;vertical-align:middle;width: 10%"rowspan="6"><strong>Sr No.</strong></td>
-            <td style="width: 30%; text-align: left;"><strong>Customer Name</strong></td>
-            <td style="width: 60%;">'.$row["customer_name"].'</td>
-            </tr>
-            <tr>
-            <td style="width: 30%; text-align: left;"><strong>Ride Name</strong></td>
-            <td style="width: 60%;">'.$row["ride_name"].'</td>
-            </tr>
-            <tr>
-            <td style="width: 30%; text-align: left;"><strong>Ride Descripton</strong></td>
-            <td style="width: 60%;">'.$row["ride_description"].'</td>
-            </tr>
-            <tr>
-            <td style="width: 30%; text-align: left;"><strong>No of Adult</strong></td>
-            <td style="width: 60%;">'.$row["no_adult"].'</td>
-            </tr>
-            <tr>
-            <td style="width: 30%; text-align: left;"><strong>No of children</strong></td>
-            <td style="width: 60%;">'.$row["no_child"].'</td>
-            </tr>
-            <tr>
-            <td style="width: 30%; text-align: left;"><strong>Date Issued</strong></td>
-            <td style="width: 60%;">'.$row["date_issued"].'</td>
-            </tr>      
+            <h2>Generated Tickets</h2>
             ';
-            $content.='</tbody>
-            </table>';
+        while ($row_2 = mysqli_fetch_assoc($result)) {
+            $content .= '
+            <table style="width: 100%;" border="1">
+            <tbody>
+                <tr>
+                <td style="text-align:center;vertical-align:middle;width: 10%"rowspan="6"><strong>Sr No.</strong></td>
+                <td style="width: 30%; text-align: left;"><strong>Customer Name</strong></td>
+                <td style="width: 60%;">' . $row_2["customer_name"] . '</td>
+                </tr>
+                <tr>
+                <td style="width: 30%; text-align: left;"><strong>Ride Name</strong></td>
+                <td style="width: 60%;">' . $row_2["ride_name"] . '</td>
+                </tr>
+                <tr>
+                <td style="width: 30%; text-align: left;"><strong>Ride Descripton</strong></td>
+                <td style="width: 60%;">' . $row_2["ride_description"] . '</td>
+                </tr>
+                <tr>
+                <td style="width: 30%; text-align: left;"><strong>No of Adult</strong></td>
+                <td style="width: 60%;">' . $row_2["no_adult"] . '</td>
+                </tr>
+                <tr>
+                <td style="width: 30%; text-align: left;"><strong>No of children</strong></td>
+                <td style="width: 60%;">' . $row_2["no_child"] . '</td>
+                </tr>
+                <tr>
+                <td style="width: 30%; text-align: left;"><strong>Date Issued</strong></td>
+                <td style="width: 60%;">' . $row_2["date_issued"] . '</td>
+                </tr>  
+                </tbody>
+                </table>    
+                ';
+            $content .= '<div style=""></div>';
         }
     }
     require_once('../vendor/TCPDF-main/tcpdf.php');
@@ -78,4 +79,4 @@ if (isset($_POST['checkbox_list'])) {
     $obj_pdf->Output('ticket.pdf', 'I');
 } else {
     echo "nothing";
-} ?>
+}
