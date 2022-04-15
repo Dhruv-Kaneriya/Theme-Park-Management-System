@@ -21,34 +21,36 @@ if (isset($_POST['checkbox_list'])) {
     $content = 0;
     if ($result->num_rows > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            $content = '
-            <div style="width: 620px; height:200px;background-color: #4537de;">
-
-            <div style="width: 400px;
-            height: 200px;
-            border-right: 2px dashed #fff;">
-                <div style="border-style:solid; border-width: 15px;border-color:#4537de">
-                    <div style=" font-size: 24px;
-            color: #fff;
-            letter-spacing: 1px;">Dreamzzz Theme Park</div>
-                    <div style=" font-size: 18px;
-            line-height: 30px;
-            color: #a8bbf8;">' . $row["date_issued"] . '</div>
-                    <br />
-                    <div style=" font-size: 18px;
-            line-height: 30px;
-            color: #a8bbf8;">' . $row["customer_name"] . '</div>
-                    <div style=" font-size: 18px;
-            line-height: 30px;
-            color: #a8bbf8;">
-                        <p>Adults ' . $row["no_adult"] . ' Kids ' . $row["no_child"] . '</p>
-                    </div>
-                </div>
-            </div>
-    
-    
-    
-        </div>';
+            $content = '<h2>Generated Tickets</h2>
+            <table style="width: 100%;" border="1">
+            <tbody>
+            <tr>
+            <td style="text-align:center;vertical-align:middle;width: 10%"rowspan="6"><strong>Sr No.</strong></td>
+            <td style="width: 30%; text-align: left;"><strong>Customer Name</strong></td>
+            <td style="width: 60%;">Juzar</td>
+            </tr>
+            <tr>
+            <td style="width: 30%; text-align: left;"><strong>Ride Name</strong></td>
+            <td style="width: 60%;">Roller Coaster</td>
+            </tr>
+            <tr>
+            <td style="width: 30%; text-align: left;"><strong>Ride Descripton</strong></td>
+            <td style="width: 60%;">Thrill Ride</td>
+            </tr>
+            <tr>
+            <td style="width: 30%; text-align: left;"><strong>No of Adult</strong></td>
+            <td style="width: 60%;">2</td>
+            </tr>
+            <tr>
+            <td style="width: 30%; text-align: left;"><strong>No of children</strong></td>
+            <td style="width: 60%;">3</td>
+            </tr>
+            <tr>
+            <td style="width: 30%; text-align: left;"><strong>Date Issued</strong></td>
+            <td style="width: 60%;">15/04/2022</td>
+            </tr>
+            </tbody>
+            </table>';
         }
     }
     require_once('../vendor/TCPDF-main/tcpdf.php');
