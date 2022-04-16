@@ -26,7 +26,7 @@
             <div class=" lg:flex">
               <div class="pb-4 flex-1 lg:pr-8">
                 <p class=" pl-2 pb-2">First Name</p>
-                <input type="text" required name="first_name" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input pattern="[A-Za-z ]{3,30}" title="Only Letters allowed and between size of 3 to 30." type="text" required name="first_name" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
               </div>
               <div class="pb-4 flex-1 lg:pl-8">
                 <p class=" pl-2 pb-2">Email Id</p>

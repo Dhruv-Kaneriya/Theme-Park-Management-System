@@ -74,11 +74,11 @@
             <div class="lg:flex">
               <div class="pb-4 flex-1 lg:pr-8">
                 <p class=" pl-2 pb-2">Adult Price</p>
-                <input type="number" required placeholder="eg. $400" name="adult_price" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input required pattern="[0-9]{0,11}" title="Amount must be in digits" type="text" placeholder="eg. $400" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
               </div>
               <div class="pb-4 flex-1 lg:pl-8">
                 <p class=" pl-2 pb-2">Child Price</p>
-                <input type="number" required placeholder="eg. $200" name="child_price" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
+                <input required pattern="[0-9]{0,11}" title="Amount must be in digits" type="text" placeholder="eg. $200" class="text-sm w-full border-2 rounded-lg shadow appearance-none py-2 px-3 border-green-700 text-gray-700 focus:outline-none focus:border-green-700 " />
               </div>
             </div>
             <div class=" flex justify-end">
