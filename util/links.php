@@ -10,3 +10,6 @@
     <script src="http://kit.fontawesome.com/a076d05399.js"></script>
     <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
     <script src="https://unpkg.com/flowbite@1.3.4/dist/datepicker.js"></script>
+
+    <script src="https://unpkg.com/flowbite@1.4.1/dist/flowbite.js"></script>
+    <!-- <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.1/dist/flowbite.min.css" /> -->
