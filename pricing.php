@@ -21,12 +21,12 @@
           <p class="text-2xl lg:text-3xl font-bold">Edit Pricing</p>
         </div>
         <div class="p-4 lg:p-8">
-          <form action="#">
+          <form action="util/pricing_functionality.php" method="POST">
             <div class="pb-4">
               <p class=" pl-2 pb-2">Select Ride</p>
               <div class="flex justify-center">
                 <div class="w-full">
-                  <select id="selected_ride" class="form-select appearance-none
+                  <select id="selected_ride" required onchange="updatePrice()" name="select_ride" class="form-select appearance-none 
                     block
                     w-full
                     px-3
@@ -43,11 +43,31 @@
                     ease-in-out
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-green-700 focus:outline-none" aria-label="Select Ride">
-                    <option selected>Please select</option>
-                    <option value="1">Ride 1</option>
-                    <option value="2">Ride 2</option>
-                    <option value="3">Ride 3</option>
+                    <option disabled>---Please select---</option>
+                    <?php
+                    include "Database/db_conn.php";
+
+                    $sql = "SELECT * FROM ride_list";
+
+                    $result = mysqli_query($conn, $sql);
+                    $ride_list = [];
+                    $i = 0;
+                    while ($res = mysqli_fetch_array($result)) {
+                      $subtable = [
+
+                        "adult_price" => $res['adult_price'],
+                        "child_price" => $res['child_price']
+                      ];
+                      $ride_list[$res['ride_id']] = $subtable;
+                    ?>
+                      <option selected value=<?php echo $res['ride_id'] ?>><?php echo $res['ride_name'] ?></option>
+                    <?php
+                    }
+
+                    ?>
+
                   </select>
+
                 </div>
               </div>
             </div>
@@ -66,7 +86,14 @@
                 Submit
               </button>
             </div>
-
+            <div class="mt-8 flex justify-center">
+              <?php if (isset($_GET['status'])) { ?>
+                <p class="text-sm text-green-600"> <?php echo $_GET['status'] ?> </p>
+              <?php } ?>
+              <?php if (isset($_GET['error'])) { ?>
+                <p class="text-sm text-red-600"> <?php echo $_GET['error'] ?> </p>
+              <?php } ?>
+            </div>
           </form>
         </div>
       </div>
