@@ -24,12 +24,13 @@ if (isset($_POST['checkbox_list'])) {
         $content .= '
             <h2>Generated Tickets</h2>
             ';
+            $srno=1;
         while ($row_2 = mysqli_fetch_assoc($result)) {
             $content .= '
             <table style="width: 100%;" border="1">
             <tbody>
                 <tr>
-                <td style="text-align:center;vertical-align:middle;width: 10%"rowspan="6"><strong>Sr No.</strong></td>
+                <td style="text-align:center; width: 10%"rowspan="6"><strong><br><br><br>'.$srno.'</strong></td>
                 <td style="width: 30%; text-align: left;"><strong>Customer Name</strong></td>
                 <td style="width: 60%;">' . $row_2["customer_name"] . '</td>
                 </tr>
@@ -56,6 +57,7 @@ if (isset($_POST['checkbox_list'])) {
                 </tbody>
                 </table>    
                 ';
+                $srno+=1;
             $content .= '<div style=""></div>';
         }
     }
